@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tricky Question</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <h1>Tricky Question</h1>
+        <h2>Make your friends hate you!</h2>
+    </header>
+
+    <section class="main-section">
+        <div class="container">
+            <div class="content question">
+                <p>Enter your question</p>
+                <form id="formQuestion" action="question.html" method="GET">
+                    <input id="question" name="question" type="text" placeholder="Type here" autocomplete="off">
+                </form>
+            </div>
+
+            <div class="content options">
+                <div class="option">
+                    <p>Affirmative situation</p>
+                    <p>(static)</p>
+                    <form id="formYes" action="question.html" method="GET">
+                        <input type="text" id="Yes" name="Yes" placeholder="Yes" autocomplete="off">
+                    </form>
+                    <div class="upload">
+                        <label for="file1">Upload an image</label>
+                        <i title="They'll see this picture when Yes is clicked" class="fas fa-info-circle"></i>
+                    </div>
+                    <h3 id="fileName1">Placeholder</h3>
+                    <form id="formFile1" action="yes.html">
+                        <input type="file" name="file1" id="file1" autocomplete="off">
+                    </form>
+                </div>
+                <div class="option">
+                    <p>Negative situation</p>
+                    <p>(moving)</p>
+                    <form id="formNo" action="question.html" method="GET">
+                        <input type="text" id="No" name="No" placeholder="No" autocomplete="off">
+                    </form>
+                    <div class="upload">
+                        <label for="file2">Upload an image</label>
+                        <i title="They'll see this picture when No is clicked" class="fas fa-info-circle"></i>
+                    </div>
+                    <h3 id="fileName2">Placeholder</h3>
+                    <form id="formFile2" action="no.html">
+                        <input type="file" name="file2" id="file2" autocomplete="off">
+                    </form>
+                </div>
+            </div>
+
+            <div class="content btn">
+                <input id="submit" type="submit" value="Generate">
+            </div>
+        </div>
+
+        <video src="img/preview.mp4" autoplay loop></video>
+    </section>
+
+    <section class="question-section hidden">
+        <h2 id="questionText">Question</h2>
+        <div class="optionBtn" id="YesBtn">Yes</div>
+        <div class="optionBtn" id="NoBtn">No</div>
+    </section>
+
+    <section class="yes-section hidden">
+        <img id="yesImg" src="img/yes.jpg" alt="Yes option">
+    </section>
+
+    <section class="no-section hidden">
+        <img id="noImg" src="img/no.jpg" alt="No option">
+    </section>
+
+    <footer>
+        Developed by <a href="https://juanportal.com" target="_blank">Juan Portal</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
