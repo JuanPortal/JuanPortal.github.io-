@@ -73,12 +73,12 @@ submit.addEventListener("click", ()=>{
 
 // YES
 const yesSection = document.querySelector(".yes-section")
-const yesImg = document.getElementById("yesImg");
+// const yesImg = document.getElementById("yesImg");
 yes.addEventListener("click", ()=>{
     questionSection.classList.add("hidden");
     yesSection.classList.remove("hidden");
-    console.log(yesImg.attributes[1].value)
-    yesImg.attributes[1].value = file1.files[0]
+//     console.log(yesImg.attributes[1].value)
+//     yesImg.attributes[1].value = file1.files[0]
 })
 
 
