@@ -4,3 +4,37 @@
     margin: 0;
     font-family: "Poppins", sans-serif;
 }
+
+body {
+    height: 100vh;
+    background: url('/assets/background.jpg');
+}
+
+#root {
+    height: 100vh;
+    background-color: #ffffffd6;
+}
+
+header {
+    height: 20vh;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+section {
+    height: 70vh;
+    background-color: rgb(197, 186, 171);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    height: 10vh;
+    background-color: antiquewhite;
+}
