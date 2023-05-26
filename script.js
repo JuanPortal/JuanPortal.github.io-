@@ -3,7 +3,6 @@ const file1 = document.getElementById("file1");
 file1.addEventListener("change", ()=>{
     document.getElementById("fileName1").textContent = file1.files[0].name
     document.getElementById("fileName1").style.visibility = "visible";
-    console.log(file1)
 })
 
 const file2 = document.getElementById("file2");
@@ -71,14 +70,28 @@ submit.addEventListener("click", ()=>{
 })
 
 
+// FILE UPLOAD
+function handleImageUpload(event) {
+    const file = event.target.files[0]
+    const reader = new FileReader()
+
+    reader.onload = function (event) {
+        const image = document.getElementById('yesImg')
+        image.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file)
+}
+
+file1.addEventListener('change', handleImageUpload);
+
+
 // YES
 const yesSection = document.querySelector(".yes-section")
 // const yesImg = document.getElementById("yesImg");
 yes.addEventListener("click", ()=>{
     questionSection.classList.add("hidden");
     yesSection.classList.remove("hidden");
-//     console.log(yesImg.attributes[1].value)
-//     yesImg.attributes[1].value = file1.files[0]
 })
 
 
