@@ -1,6 +1,11 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 export const Question = () => {
+    const location = useLocation();
+    console.log(location.state)
+    const { yes } = location.state || {}
+
     const movingButton = ({ target }) => {
         target.style.top = `${Math.floor(Math.random() * 80)}%`
         target.style.left = `${Math.floor(Math.random() * 80)}%`
@@ -11,7 +16,7 @@ export const Question = () => {
         <section className='question'>
             <h3>Question</h3>
             <div className="fun-area">
-                <div className='button'>Yes</div>
+                <div className='button'>{yes}</div>
                 <div onClick={movingButton} onMouseOver={movingButton} className='button'>No</div>
             </div>
         </section>

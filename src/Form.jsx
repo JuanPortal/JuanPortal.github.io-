@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom'
 export const Form = () => {
 
     const [question, setQuestion] = useState('Question')
-    const [yes, setYes] = useState("Yes")
-    const [no, setNo] = useState("No")
+    const [yes, setYes] = useState('');
+    const [no, setNo] = useState("")
+    console.log(yes)
+
+    const onYesInputChange = ({ target }) => setYes(target.value);
 
     return (
         <form action="">
@@ -19,7 +22,7 @@ export const Form = () => {
                         <p>Affirmative situation</p>
                         <p>(static)</p>
                     </label>
-                    <input type="text" id="YesText" placeholder="Yes" autoComplete="off" />
+                    <input onChange={onYesInputChange} value={yes} type="text" id="YesText" placeholder="Yes" autoComplete="off" />
                     <div className="file-section">
                         <label htmlFor="YesImage">Upload an image</label>
                         <input type="file" id="YesImage" />
@@ -39,7 +42,7 @@ export const Form = () => {
                     </div>
                 </div>
             </div>
-            <Link to='/question' className="submit">Generate</Link>
+            <Link className="submit" to={{ pathname: '/question', state: { yes: yes } }}>Generate</Link>
         </form>
     )
 }
