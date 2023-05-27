@@ -1,4 +1,4 @@
-import React from 'reacts'
+import React from 'react'
 
 export const Footer = () => {
   return (
