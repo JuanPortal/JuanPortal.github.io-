@@ -74,6 +74,7 @@ input {
     border: 1px solid #000;
     border-radius: 5px;
     font-size: 12px;
+    outline: none;
 }
 
 .question-section {
