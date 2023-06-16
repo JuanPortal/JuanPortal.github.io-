@@ -51,7 +51,7 @@ section {
 }
 
 form {
-    width: min(95%, 600px);
+    width: min(95%, 550px);
     height: 59%;
     display: flex;
     flex-direction: column;
@@ -125,13 +125,46 @@ input {
     border-radius: 15px;
 }
 
+.situation .file-section label:hover {
+    cursor: grab;
+    background-color: #0000005c;
+    color: #fff;
+}
+
+.situations input[type="file"]{
+    display: none;
+}
+
 .situation .file-section i {
     padding-left: 5px;
     font-size: 12px;
 }
 
-.situations input[type="file"]{
-    display: none;
+.situation span {
+    font-size: 12px;
+    width: 100%;
+    height: 20px;
+    text-align: center;
+}
+
+.situation span.invisibleOpacity {
+    opacity: 0;
+}
+
+.situation span.visibleOpacity {
+    opacity: 1;
+}
+
+.situation:last-child div, .situation:last-child span{
+    opacity: 0;
+}
+
+.situation:last-child span {
+    cursor: default;
+}
+
+.situation:last-child .file-section label:hover {
+    cursor: default;
 }
 
 .submit {
@@ -157,7 +190,7 @@ input {
 /* VIDEO */
 
 .video-container {
-    width: min(95%, 600px);
+    width: min(95%, 550px);
     height: 38%;
     border: 2px solid #000;
     border-radius: 10px;
@@ -248,12 +281,12 @@ footer {
 }
 
 footer a {
-    margin-left: 5px;
+    margin-left: 8px;
     text-decoration: none;
     color: #800040;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 footer a:hover {
-    font-weight: 500;
+    transform: scale(1.05);
 }
