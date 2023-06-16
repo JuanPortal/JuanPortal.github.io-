@@ -17,7 +17,7 @@ export const Form = () => {
         <form action="">
             <div className="question-section">
                 <label htmlFor="question">Enter your question <span>*</span> </label>
-                <input onChange={onQuestionInputChange} value={question} type="text" required placeholder='Type the question to display' id='question' />
+                <input onChange={onQuestionInputChange} value={question} type="text" required placeholder='Type the question to display' id='question' autoComplete="off" />
             </div>
             <div className="situations">
                 <div className="situation">
