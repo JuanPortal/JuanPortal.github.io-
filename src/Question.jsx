@@ -9,6 +9,8 @@ export const Question = () => {
     const no = params.get('no');
 
     const movingButton = ({ target }) => {
+        // target.style.position = 'absolute'
+        // target.style.width = 'fit-content'
         target.style.top = `${Math.floor(Math.random() * 80)}%`
         target.style.left = `${Math.floor(Math.random() * 80)}%`
         console.log(`top: ${target.style.top}    left: ${target.style.left}`)
@@ -25,6 +27,7 @@ export const Question = () => {
     return (
         <section className='question'>
             <h3>{question}</h3>
+            <div className="share">Share</div>
             <div className="areas">
                 <div className={`fun-area ${funAreaVisibility}`}>
                     <div onClick={onYesClick} className='button'>{yes || "Yes"}</div>
