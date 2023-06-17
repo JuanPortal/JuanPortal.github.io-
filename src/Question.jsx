@@ -27,7 +27,7 @@ export const Question = () => {
     return (
         <section className='question'>
             <h3>{question}</h3>
-            <div className="share">Share</div>
+            {/* <div className="share">Share</div> */}
             <div className="areas">
                 <div className={`fun-area ${funAreaVisibility}`}>
                     <div onClick={onYesClick} className='button'>{yes || "Yes"}</div>
