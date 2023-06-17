@@ -25,13 +25,15 @@ export const Question = () => {
     return (
         <section className='question'>
             <h3>{question}</h3>
-            <div className={`fun-area ${funAreaVisibility}`}>
-                <div onClick={onYesClick} className='button'>{yes || "Yes"}</div>
-                <div onClick={movingButton} onMouseOver={movingButton} className='button'>{no || "No"}</div>
-            </div>
+            <div className="areas">
+                <div className={`fun-area ${funAreaVisibility}`}>
+                    <div onClick={onYesClick} className='button'>{yes || "Yes"}</div>
+                    <div onClick={movingButton} onMouseOver={movingButton} className='button'>{no || "No"}</div>
+                </div>
 
-            <div className={`yes-area ${yesAreaVisibility}`}>
-                <img src="https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3" alt="suprised monkey meme" title='suprised monkey meme'/>
+                <div className={`yes-area ${yesAreaVisibility}`}>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3" alt="suprised monkey meme" title='suprised monkey meme'/>
+                </div>
             </div>
         </section>
     )
