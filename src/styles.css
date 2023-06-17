@@ -222,8 +222,17 @@ video {
 }
 
 .question .share {
-    /* background-color: red; */
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+    margin-bottom: 10px;
+}
 
+.question .share:hover {
+    background-color: #888888;
 }
 
 .question .areas {

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShare } from '@fortawesome/free-solid-svg-icons'
 
 export const Question = () => {
     const location = useLocation();
@@ -8,9 +10,12 @@ export const Question = () => {
     const yes = params.get('yes');
     const no = params.get('no');
 
+    const handleShare = () => {
+        navigator.clipboard.writeText(window.location.href)
+        alert('URL copied to the clipboard!')
+    }
+
     const movingButton = ({ target }) => {
-        // target.style.position = 'absolute'
-        // target.style.width = 'fit-content'
         target.style.top = `${Math.floor(Math.random() * 80)}%`
         target.style.left = `${Math.floor(Math.random() * 80)}%`
         console.log(`top: ${target.style.top}    left: ${target.style.left}`)
@@ -27,7 +32,6 @@ export const Question = () => {
     return (
         <section className='question'>
             <h3>{question}</h3>
-            {/* <div className="share">Share</div> */}
             <div className="areas">
                 <div className={`fun-area ${funAreaVisibility}`}>
                     <div onClick={onYesClick} className='button'>{yes || "Yes"}</div>
@@ -38,6 +42,7 @@ export const Question = () => {
                     <img src="https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3" alt="suprised monkey meme" title='suprised monkey meme'/>
                 </div>
             </div>
+            <div onClick={handleShare} className="share">Share it with your friends! <FontAwesomeIcon icon={faShare} /></div>
         </section>
     )
 }
