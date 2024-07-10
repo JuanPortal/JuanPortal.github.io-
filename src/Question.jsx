@@ -1,35 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShare } from '@fortawesome/free-solid-svg-icons'
 
 export const Question = () => {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  
-  const question = params.get('question') || '';
-  const yes = params.get('yes') || '';
-  const no = params.get('no') || '';
-  const file = params.get('file');
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    
+    const question = params.get('question') || '';
+    const yes = params.get('yes') || '';
+    const no = params.get('no') || '';
+    const file = params.get('file');
+
+    const handleSharing = () => {
+        navigator.clipboard.writeText(window.location.href)
+        alert('URL copied to the clipboard!')
+    }
+
+    const movingButton = ({ target }) => {
+        target.style.top = `${Math.floor(Math.random() * 80)}%`
+        target.style.left = `${Math.floor(Math.random() * 80)}%`
+        console.log(`top: ${target.style.top}    left: ${target.style.left}`)
+    }
+
+    const [funAreaVisibility, setFunAreaVisibility] = useState('')
+    const [yesAreaVisibility, setYesAreaVisibility] = useState('hidden')
+
+    const onYesClick = () => {
+        setFunAreaVisibility('hidden')
+        setYesAreaVisibility('')
+    }
 
   return (
-    <div>
-      <div>
-        <h3>Question:</h3>
-        <p>{question}</p>
-      </div>
-      <div>
-        <h3>Affirmative Situation:</h3>
-        <p>{yes}</p>
-        {file && (
-          <div>
-            <h4>Uploaded Image:</h4>
-            <img src={file} alt="Uploaded" style={{ maxWidth: '300px', height: 'auto' }} />
+    <section className='question'>
+      <h3>{question || "Question"}</h3>
+      <div className="areas">
+          <div className={`fun-area ${funAreaVisibility}`}>
+              <div onClick={onYesClick} className='button'>{yes || "Yes"}</div>
+              <div onClick={movingButton} onMouseOver={movingButton} className='button'>{no || "No"}</div>
           </div>
-        )}
+
+          <div className={`yes-area ${yesAreaVisibility}`}>
+            <img src={file || 'https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3'} alt="Uploaded" />
+          </div>
       </div>
-      <div>
-        <h3>Negative Situation:</h3>
-        <p>{no}</p>
-      </div>
-    </div>
-  );
-};
+      <div onClick={handleSharing} className="share">Share it with your friends! <FontAwesomeIcon icon={faShare} /></div>
+  </section>
+  )
+}

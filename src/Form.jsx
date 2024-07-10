@@ -26,11 +26,12 @@ export const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const defaultQuestion = question.trim() === '' ? 'Question' : question;
         const affirmative = yes.trim() === '' ? 'Yes' : yes;
         const negative = no.trim() === '' ? 'No' : no;
     
         const params = new URLSearchParams();
-        params.append('question', question);
+        params.append('question', defaultQuestion);
         params.append('yes', affirmative);
         params.append('no', negative);
         if (file) {
