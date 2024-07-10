@@ -1,43 +1,55 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 export const Form = () => {
 
     const [question, setQuestion] = useState('')
     const [yes, setYes] = useState('');
     const [no, setNo] = useState('')
-    const [uploadedImage, setUploadedImage] = useState(null);
+    const [file, setFile] = useState(null);
 
     const onQuestionInputChange = ({ target }) => setQuestion(target.value);
+    const isQuestionEmpty = question.trim() === '';
+
     const onYesInputChange = ({ target }) => setYes(target.value);
     const onNoInputChange = ({ target }) => setNo(target.value);
 
-    const isQuestionEmpty = question.trim() === '';
-
-    const [opacity, setOpacity] = useState('invisibleOpacity')
-    const [fileName, setFileName] = useState('')
-
-    const onFileUpload = (e) => {
-        setOpacity('visibleOpacity')
-        setFileName(e.target.files[0].name)
-
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setUploadedImage(reader.result);
-        };
-        if (file) {
-            reader.readAsDataURL(file);
+    const onFileChange = (event) => {
+        if (event.target.files.length > 0) {
+          setFile(event.target.files[0]);
+        } else {
+          setFile(null);
         }
-    }
+      };
 
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const affirmative = yes.trim() === '' ? 'Yes' : yes;
+        const negative = no.trim() === '' ? 'No' : no;
     
+        const params = new URLSearchParams();
+        params.append('question', question);
+        params.append('yes', affirmative);
+        params.append('no', negative);
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            params.append('file', e.target.result);
+            navigate(`/question?${params.toString()}`);
+          };
+          reader.readAsDataURL(file);
+        } else {
+          navigate(`/question?${params.toString()}`);
+        }
+      };
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="question-section">
                 <label htmlFor="question">Enter your question <span>*</span> </label>
-                <input onChange={onQuestionInputChange} value={question} type="text" required placeholder='Type the question to display' id='question' autoComplete="off" />
+                <input onChange={onQuestionInputChange} type="text" required placeholder='Type the question to display' id='question' autoComplete="off" />
             </div>
 
             <div className="situations">
@@ -46,13 +58,13 @@ export const Form = () => {
                         <p>Affirmative situation</p>
                         <p>(static)</p>
                     </label>
-                    <input onChange={onYesInputChange} value={yes} type="text" id="YesText" placeholder="Yes" autoComplete="off" />
+                    <input onChange={onYesInputChange} type="text" id="YesText" placeholder="Yes" autoComplete="off" />
+
                     <div className="file-section">
                         <label htmlFor="YesImage">Upload an image</label>
-                        <input onChange={onFileUpload} type="file" id="YesImage" accept="image/png, image/jpeg, image/jpg" />
-                        <i title="They'll see this picture when Yes is clicked" className="fas fa-info-circle"></i>
+                        <input onChange={onFileChange} type="file" id="YesImage" accept="image/png, image/jpeg, image/jpg" />
+                        {file && (<span> ✓ </span>)}
                     </div>
-                    <span className={opacity}>{fileName}</span>
                 </div>
 
                 <div className="situation">
@@ -60,23 +72,13 @@ export const Form = () => {
                         <p>Negative situation</p>
                         <p>(moving)</p>
                     </label>
-                    <input onChange={onNoInputChange} value={no} type="text" id="NoText" placeholder="No" autoComplete="off" />
-                    <div className="file-section">
-                        {/* <label htmlFor="NoImage">Upload an image</label> */}
-                        <label>Upload an image</label>
-                        <input type="file" id="NoImage" />
-                        {/* <i title="They'll see this picture when No is clicked" className="fas fa-info-circle"></i> */}
-                        <i className="fas fa-info-circle"></i>
-                    </div>
-                    <span className='invisibleOpacity'>File name</span>
+                    <input onChange={onNoInputChange} type="text" id="NoText" placeholder="No" autoComplete="off" />
                 </div>
             </div>
 
-            {
-                isQuestionEmpty ? 
-                (<button className="submit unavailable" disabled>Generate</button>) : 
-                (<Link className="submit" to={`/question?question=${question}&yes=${yes}&no=${no}&image=${encodeURIComponent(uploadedImage)}`}>Generate</Link>)
-            }
+            <button type="submit" className={`submit ${isQuestionEmpty ? 'unavailable' : ''}`} disabled={isQuestionEmpty}>
+                Generate
+            </button>
         </form>
     )
 }
