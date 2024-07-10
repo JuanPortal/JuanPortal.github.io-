@@ -117,6 +117,10 @@ input {
     font-size: 20px;
 }
 
+.situation .file-section {
+  width: 100%;
+}
+
 .situation .file-section label {
     font-size: 15px;
     padding: 5px 10px;
@@ -132,6 +136,14 @@ input {
 
 .situations .file-section input[type="file"]{
     display: none;
+}
+
+.situation .file-section .info {
+  padding-left: 5px;
+}
+
+.situation .file-section .info:hover {
+  cursor: help;
 }
 
 .situation .file-section span {

@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 export const Form = () => {
-
-    const [question, setQuestion] = useState('')
+    const [question, setQuestion] = useState('');
     const [yes, setYes] = useState('');
-    const [no, setNo] = useState('')
+    const [no, setNo] = useState('');
     const [file, setFile] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');
 
     const onQuestionInputChange = ({ target }) => setQuestion(target.value);
     const isQuestionEmpty = question.trim() === '';
@@ -17,8 +19,12 @@ export const Form = () => {
     const onFileChange = (event) => {
         if (event.target.files.length > 0) {
           setFile(event.target.files[0]);
+          const reader = new FileReader();
+          reader.onload = (e) => setImageUrl(e.target.result);
+          reader.readAsDataURL(event.target.files[0]);
         } else {
           setFile(null);
+          setImageUrl('');
         }
       };
 
@@ -34,16 +40,11 @@ export const Form = () => {
         params.append('question', defaultQuestion);
         params.append('yes', affirmative);
         params.append('no', negative);
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            params.append('file', e.target.result);
-            navigate(`/question?${params.toString()}`);
-          };
-          reader.readAsDataURL(file);
-        } else {
-          navigate(`/question?${params.toString()}`);
+        if (imageUrl) {
+          params.append('imageUrl', imageUrl);
         }
+    
+        navigate(`/question?${params.toString()}`);
       };
 
     return (
@@ -65,6 +66,7 @@ export const Form = () => {
                         <label htmlFor="YesImage">Upload an image</label>
                         <input onChange={onFileChange} type="file" id="YesImage" accept="image/png, image/jpeg, image/jpg" />
                         {file && (<span> ✓ </span>)}
+                        <FontAwesomeIcon className='info' icon={faCircleInfo} title="They'll see this picture when Yes is clicked" />
                     </div>
                 </div>
 

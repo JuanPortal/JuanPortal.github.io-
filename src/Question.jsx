@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShare } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
 
 export const Question = () => {
     const location = useLocation();
@@ -10,7 +10,7 @@ export const Question = () => {
     const question = params.get('question') || '';
     const yes = params.get('yes') || '';
     const no = params.get('no') || '';
-    const file = params.get('file');
+    const imageUrl = params.get('imageUrl') || '';
 
     const handleSharing = () => {
         navigator.clipboard.writeText(window.location.href)
@@ -41,7 +41,11 @@ export const Question = () => {
           </div>
 
           <div className={`yes-area ${yesAreaVisibility}`}>
-            <img src={file || 'https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3'} alt="Uploaded" />
+            {imageUrl ? (
+              <img src={imageUrl} alt="Uploaded" />
+            ) : (
+              <img src='https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3' alt="Default" />
+            )}
           </div>
       </div>
       <div onClick={handleSharing} className="share">Share it with your friends! <FontAwesomeIcon icon={faShare} /></div>
