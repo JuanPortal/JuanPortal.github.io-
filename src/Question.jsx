@@ -9,6 +9,7 @@ export const Question = () => {
     const question = params.get('question');
     const yes = params.get('yes');
     const no = params.get('no');
+    const image = params.get('image');
 
     const handleSharing = () => {
         navigator.clipboard.writeText(window.location.href)
@@ -39,7 +40,12 @@ export const Question = () => {
                 </div>
 
                 <div className={`yes-area ${yesAreaVisibility}`}>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3" alt="suprised monkey meme" title='suprised monkey meme'/>
+                    {/* {
+                        image ? 
+                        (<img src={decodeURIComponent(image)} title="Uploaded" alt="Uploaded" />) : 
+                        (<img src="https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3" alt="Suprised monkey meme" title='Suprised monkey meme'/>)
+                    } */}
+                    <img src={decodeURIComponent(image)} title="Uploaded" alt="Uploaded" />
                 </div>
             </div>
             <div onClick={handleSharing} className="share">Share it with your friends! <FontAwesomeIcon icon={faShare} /></div>

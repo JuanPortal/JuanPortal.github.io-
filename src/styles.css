@@ -2,7 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: "Quicksand", sans-serif;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 /* HEADER */
 
 header {
-    height: 20vh;
+    height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,44 +28,44 @@ header {
 }
 
 h1 {
-    font-size: 36px;
-    font-weight: 800;
+    font-size: 60px;
+    font-weight: 900;
 }
 
 h2 {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 section {
-    height: 75vh;
+    height: 80vh;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 /* HOME */
 
 .home {
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: min(2%, 10px);
+    gap: 40px;
 }
 
 form {
-    width: min(95%, 550px);
-    height: 59%;
+    width: 40%;
+    height: 75%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     background-color: #0000005c;
     padding: 10px;
-    border: 2px solid #000;
-    border-radius: 10px;
+    border: 4px solid #000;
+    border-radius: 20px;
 }
 
 label {
-    font-size: 14px;
+    font-size: 30px;
+    font-weight: 500;
 }
 
 input {
@@ -73,13 +73,14 @@ input {
     padding: 6px 0;
     text-align: center;
     border: 1px solid #000;
-    border-radius: 5px;
-    font-size: 12px;
+    border-radius: 10px;
+    font-size: 25px;
     outline: none;
 }
 
 .question-section {
     width: 100%;
+    gap: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -88,6 +89,7 @@ input {
 
 .question-section label span {
     color: #ff0000;
+    font-weight: 900;
 }
 
 .situations {
@@ -113,6 +115,10 @@ input {
     align-items: center;
 }
 
+.situations .situation label p:last-child {
+    font-size: 20px;
+}
+
 .situation .file-section {
     display: flex;
     justify-content: center;
@@ -120,9 +126,9 @@ input {
 }
 
 .situation .file-section label {
-    font-size: 10px;
-    padding: 4px 6px;
-    border: 1px solid #000;
+    font-size: 15px;
+    padding: 5px 10px;
+    border: 2px solid #000;
     border-radius: 15px;
 }
 
@@ -191,9 +197,9 @@ input {
 /* VIDEO */
 
 .video-container {
-    width: min(95%, 550px);
-    height: 38%;
-    border: 2px solid #000;
+    width: 40%;
+    aspect-ratio: 16/9;
+    border: 4px solid #000;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -284,15 +290,21 @@ video {
 }
 
 .yes-area {
+    /* background: url('https://firebasestorage.googleapis.com/v0/b/tricky-question.appspot.com/o/yes.webp?alt=media&token=fbf1d76d-6921-4cf1-838c-442455d7c8c3');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
     width: min(90%, 600px);
-    height: 100%;
+    height: min(300px, 100%);
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: red; */
 }
 
 .yes-area img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
     border: 3px solid #000;
     border-radius: 20px;
     margin: auto 0;

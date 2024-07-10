@@ -6,6 +6,7 @@ export const Form = () => {
     const [question, setQuestion] = useState('')
     const [yes, setYes] = useState('');
     const [no, setNo] = useState('')
+    const [uploadedImage, setUploadedImage] = useState(null);
 
     const onQuestionInputChange = ({ target }) => setQuestion(target.value);
     const onYesInputChange = ({ target }) => setYes(target.value);
@@ -19,7 +20,18 @@ export const Form = () => {
     const onFileUpload = (e) => {
         setOpacity('visibleOpacity')
         setFileName(e.target.files[0].name)
+
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setUploadedImage(reader.result);
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     }
+
+    
 
     return (
         <form>
@@ -63,7 +75,7 @@ export const Form = () => {
             {
                 isQuestionEmpty ? 
                 (<button className="submit unavailable" disabled>Generate</button>) : 
-                (<Link className="submit" to={`/question?question=${question}&yes=${yes}&no=${no}`}>Generate</Link>)
+                (<Link className="submit" to={`/question?question=${question}&yes=${yes}&no=${no}&image=${encodeURIComponent(uploadedImage)}`}>Generate</Link>)
             }
         </form>
     )
