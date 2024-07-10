@@ -100,6 +100,7 @@ input {
 .situations {
   width: 100%;
   display: flex;
+  justify-content: center;
   align-items: flex-start;
   gap: 20px;
 }
@@ -119,6 +120,10 @@ input {
 
 .situation .file-section {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .situation .file-section label {
@@ -136,10 +141,6 @@ input {
 
 .situations .file-section input[type="file"]{
     display: none;
-}
-
-.situation .file-section .info {
-  padding-left: 5px;
 }
 
 .situation .file-section .info:hover {
@@ -318,3 +319,51 @@ footer a:hover {
 
 /* RESPONSIVE */
 
+@media screen and (max-width: 430px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+
+  .home {
+    flex-direction: column;
+  }
+
+  form {
+    width: 85%;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  label {
+    font-size: 20px;
+  }
+
+  input {
+    font-size: 15px;
+  }
+
+  .situations {
+    gap: 10px;
+  }
+
+  .situations .situation label p:last-child {
+      font-size: 15px;
+  }
+
+  .situation .file-section label {
+    font-size: 10px;
+  }
+
+  .submit {
+    font-size: 20px;
+    padding: 8px 15px;
+  }
+
+  .video-container {
+    width: 85%;
+  }
+}
